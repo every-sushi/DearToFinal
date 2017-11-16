@@ -1,66 +1,61 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ryungna.afinal.FragMe"
-    android:orientation="vertical"
-    android:layout_gravity="center_horizontal"
-    android:background="@drawable/background"
-    >
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#523b56"
-        android:orientation="horizontal"
-        android:weightSum="1"
-        android:id="@+id/linearLayout3">
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="326dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.85"
-            android:gravity="center"
-            android:paddingLeft="56dp"
-            android:text="일기"
-            android:textColor="#ffffff"
-            android:textSize="25dp" />
-
-        <Button
-            android:id="@+id/addMydiary"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:background="@drawable/button2"
-            android:layout_marginRight="15dp"/>
-
-    </LinearLayout>
+    tools:context="com.ryungna.afinal.FragMe">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:background="@drawable/background">
 
-        <ListView
-            android:id="@+id/friends_listview"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="326dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.85"
+                android:gravity="center"
+                android:paddingLeft="56dp"
+                android:text="내 일기장"
+                android:textColor="#ffffff"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/add_my_diary_btn"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="@drawable/button2"
+                android:layout_marginRight="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/listview"
-            android:choiceMode="singleChoice"
-            android:dividerHeight="8dp"></ListView>
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/diary_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/listview"
+                android:choiceMode="singleChoice"
+                android:dividerHeight="8dp">
+            </ListView>
+        </LinearLayout>
+
     </LinearLayout>
 
 
 
-
-
-</LinearLayout>
+</FrameLayout>

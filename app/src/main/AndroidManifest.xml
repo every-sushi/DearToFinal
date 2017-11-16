@@ -19,7 +19,9 @@
         </activity>
         <activity
             android:name=".MainFrag"
-            android:label="@string/title_activity_main_frag"></activity>
+            android:label="@string/title_activity_main_frag" />
+        <activity android:name=".addGroup" />
+        <activity android:name=".write_mydiary"></activity>
     </application>
 
 </manifest>

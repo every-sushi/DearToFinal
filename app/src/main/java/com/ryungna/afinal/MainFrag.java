@@ -23,23 +23,23 @@ public class MainFrag extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
+
                 case R.id.navigation_home:
                     fragment = new FragMe();
                     Toast.makeText(getBaseContext(),"me",Toast.LENGTH_SHORT);
-                   // switchFragment(fragment);
+                    switchFragment(fragment);
                     return true;
-                case R.id.navigation_dashboard:
 
+                case R.id.navigation_dashboard:
                     fragment = new FragGroup();
                     Toast.makeText(getBaseContext(),"G",Toast.LENGTH_SHORT);
-                  //  switchFragment(fragment);
+                    switchFragment(fragment);
                     return true;
+
                 case R.id.navigation_notifications:
-
-
                     fragment = new FragFriend();
                     Toast.makeText(getBaseContext(),"F",Toast.LENGTH_SHORT);
-                  //  switchFragment(fragment);
+                    switchFragment(fragment);
                     return true;
             }
             return false;

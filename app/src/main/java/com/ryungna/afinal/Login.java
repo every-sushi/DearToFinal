@@ -17,11 +17,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static com.ryungna.afinal.UserModel.user;
+import static com.ryungna.afinal.UserModel.userEmail;
+import static com.ryungna.afinal.UserModel.userUid;
 
 
 public class Login extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+    public FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     Button join;
     Button login;
@@ -29,10 +32,13 @@ public class Login extends AppCompatActivity {
     EditText passwd;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        final String TAG ="EHoo";
 
         join = (Button)findViewById(R.id.join);
         login = (Button)findViewById(R.id.login);
@@ -45,9 +51,14 @@ public class Login extends AppCompatActivity {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+
+                 UserModel.user = FirebaseAuth.getInstance().getCurrentUser();
+
                 if (user != null) {
                     // User is signed in
+                    userEmail = user.getEmail(); //userEmail에 email들어가있음
+                    userUid = user.getUid(); //userUid에 uid들어가있음
+
                     Toast.makeText(Login.this,user.getEmail(), Toast.LENGTH_SHORT);
                     Intent intent = new Intent(Login.this, MainFrag.class);
                     finish(); //로그인이 되면 로그인액티비티가 사라지는거임
@@ -67,36 +78,7 @@ public class Login extends AppCompatActivity {
         join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                mAuth.createUserWithEmailAndPassword(email.getText().toString(), passwd.getText().toString())
-                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                UserModel userModel = new UserModel();
-
-                                UserModel.userName = email.getText().toString();
-
-                                UserModel.userId= task.getResult().getUser().getUid();
-                                Log.d("asdf", UserModel.userId);
-                                FirebaseDatabase.getInstance().getReference().child("user").child(userModel.userId).child("email").setValue(userModel.userName);
-
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(Login.this, "회원가입 실패",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                                else{//성공적으로 가입이 되면
-                                    Toast.makeText(Login.this, "회원가입 성공",
-                                            Toast.LENGTH_SHORT).show();
-                                }
-
-                                // ...
-                            }
-                        });
-
-
-
-
-
+                createUser(email.getText().toString(),passwd.getText().toString());
 
 
             }
@@ -104,46 +86,64 @@ public class Login extends AppCompatActivity {
 
 
 
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                loginUser(email.getText().toString(),passwd.getText().toString());
+                mAuth.signInWithEmailAndPassword(email.getText().toString(), passwd.getText().toString())
+                        .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
 
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (!task.isSuccessful()) { //로그인실패
+
+                                    Toast.makeText(Login.this, "로그인 실패",
+                                            Toast.LENGTH_SHORT).show();
+
+                                }
+                                else {
+                                    //FirebaseUser user = mAuth.getCurrentUser();
+                                    Toast.makeText(Login.this, "로그인 성공",
+                                            Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(Login.this,"uid:"+ UserModel.user.getEmail().toString()+"=="+userEmail,
+//                                            Toast.LENGTH_SHORT).show();
+
+                                }
+
+                            }
+                        });
 
             }
         });//end of login.setOnClickListener
 
 
-
-
     }//end of onCreate
 
 
+    public void createUser(String email, String passwd){
 
-    public void loginUser(String email, String password){
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.createUserWithEmailAndPassword(email,passwd)
+                .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) { //로그인실패
-                            Toast.makeText(Login.this, "로그인 실패",
+
+                        FirebaseDatabase.getInstance().getReference().child("user").child(userUid).child("email").setValue(userEmail);
+
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(Login.this, "회원가입 실패",
                                     Toast.LENGTH_SHORT).show();
 
                         }
-                        else {
-
-                            //FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(Login.this, "로그인 성공",
+                        else{//성공적으로 가입이 되면
+                            Toast.makeText(Login.this, user+"++"+UserModel.userUid,
                                     Toast.LENGTH_SHORT).show();
-
                         }
 
+                        // ...
                     }
                 });
-
     }
+
 
 
 
