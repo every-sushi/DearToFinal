@@ -35,35 +35,39 @@ public class show_group_diary extends AppCompatActivity {
         final String id = UserModel.userUid;
         final String group = intent.getExtras().getString("group_name");
 
+        FirebaseDatabase my_turn=FirebaseDatabase.getInstance();
+        final DatabaseReference myturn_Ref=my_turn.getReference("user");
 
-     //   FirebaseDatabase made=FirebaseDatabase.getInstance();
-      //  final DatabaseReference mRef=made.getReference("user");
+        myturn_Ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-//        mRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                myturn=dataSnapshot.child(id).child("Groups").child(group).child("turn").getValue(String.class);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
+                myturn=dataSnapshot.child(id).child("Groups").child(group).child("turn").getValue(String.class);
+
+                // myturn=Boolean.valueOf(a);
+                Toast.makeText(show_group_diary.this, myturn, Toast.LENGTH_SHORT).show();
+
+            }
+
+           @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         write_group_diary = (Button)findViewById(R.id.write_group_diary);
 
         write_group_diary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  if(myturn.equals(true)){
+                if(myturn.equals(true)){
                     Intent goToWrite = new Intent(show_group_diary.this,write_group_diary.class);
                     goToWrite.putExtra("group_name",UserModel.choose_group);
                     startActivity(goToWrite);
-//                }
-//                else{
-//                    Toast.makeText(show_group_diary.this, "아직 차례가 되지 않았어요!!", Toast.LENGTH_SHORT).show();
-//                }
+               }
+                else{ n--h0-j
+                    Toast.makeText(show_group_diary.this, "아직 차례가 되지 않았어요!!", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

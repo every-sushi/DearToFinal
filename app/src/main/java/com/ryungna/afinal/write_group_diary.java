@@ -82,7 +82,7 @@ public class write_group_diary extends AppCompatActivity {
                     map.put(String.valueOf(date), new Diary(String.valueOf(et2.getText()), String.valueOf(et1.getText()), weather, writer)); //넣기
                     myRef.child(madeby).child("Groups").child(group).child("diary").updateChildren(map);
                     //작성자가 친구목록 중 한명이라면 false로 바꾸기
-                    myRef.child(id).child("Groups").child(group).child("turn").setValue(false);
+                    myRef.child(id).child("Groups").child(group).child("turn").setValue("false");
 
 
                     FirebaseDatabase member = FirebaseDatabase.getInstance();
@@ -95,7 +95,7 @@ public class write_group_diary extends AppCompatActivity {
                             Iterator<DataSnapshot> child = dataSnapshot.child(id).child("Groups").child(group).child("member").getChildren().iterator();
                             while (child.hasNext()) {
                                 String member = child.next().getKey();
-                                member_Ref.child(member).child("Groups").child(group).child("turn").setValue(true);
+                                member_Ref.child(member).child("Groups").child(group).child("turn").setValue("true");
                             }
                         }
 
