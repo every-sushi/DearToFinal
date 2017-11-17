@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#523b56">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="일기"
+            android:textColor="#ffffff"
+            android:textSize="25dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="8dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/DateText"
+            android:layout_width="120pt"
+            android:layout_height="54dp"
+            android:ems="10"
+            android:focusable="false"
+            android:gravity="center"
+            android:inputType="date"
+            android:background="@null"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/sunnybt"
+            android:layout_width="25pt"
+            android:layout_height="25pt"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/sun02" />
+
+
+        <Button
+            android:id="@+id/cloudbt"
+            android:layout_width="25pt"
+            android:layout_height="25pt"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/cloudy02" />
+
+        <Button
+            android:id="@+id/fogbt"
+            android:layout_width="25pt"
+            android:layout_height="25pt"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/mcloudy02" />
+
+        <Button
+            android:id="@+id/rainbt"
+            android:layout_width="25pt"
+            android:layout_height="25pt"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rainy02" />
+
+        <Button
+            android:id="@+id/snowbt"
+            android:layout_width="25pt"
+            android:layout_height="25pt"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/snow02" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp">
+        <TextView
+            android:id="@+id/diarytitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제목 : "
+            android:textColor="#99ffffff"
+            android:textSize="13pt"
+            />
+        <EditText
+            android:id="@+id/titleText"
+            android:layout_width="281dp"
+            android:layout_height="51dp"
+            android:hint="제목을 입력하세요."
+            android:textColor="#99ffffff"
+            android:textColorHint="#99ffffff"
+            android:textSize="13pt"
+            android:background="@null"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/contentbox"
+            android:layout_width="match_parent"
+            android:layout_height="252dp"
+            android:background="@drawable/edittext"
+            android:gravity="top"
+            android:hint=" 교환일기를 입력하세요."
+            android:textColorHint="#b34f4f4f"
+            android:textColor="#b34f4f4f"
+            android:textSize="12pt"
+            android:padding="10dp"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp">
+        <Button
+            android:id="@+id/inputfirebasebt"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="저장"
+            android:textSize="18dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/button"
+            />
+
+        <Button
+            android:id="@+id/canclebt"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="취소"
+            android:textSize="18dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/button"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -99,6 +99,7 @@ public class addGroup extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();
+                Iterator<DataSnapshot> child1 = dataSnapshot.getChildren().iterator();
                 Iterator<DataSnapshot> child2 = dataSnapshot.child(id).child("Groups").getChildren().iterator();
                 Iterator<DataSnapshot> child3 = dataSnapshot.getChildren().iterator();
                 if(flag!=1){
@@ -112,9 +113,11 @@ public class addGroup extends AppCompatActivity {
                     }
                 }
 
+
                 if(flag!=1){
                     while(child.hasNext())
                     {
+                        //Toast.makeText(addGroup.this,"2",Toast.LENGTH_SHORT).show();
                         String str=child.next().getKey();//모든 id
                         String str1=dataSnapshot.child(str).child("email").getValue(String.class); //모든 이메일
                         mRef.child(id).child("Groups").child(group_name).child("made_by").setValue(id);
@@ -127,27 +130,38 @@ public class addGroup extends AppCompatActivity {
                     }
                 }
 
-                while (child.hasNext()) {
-                    String str = child.next().getKey();//모든 id
-                    String str1 = dataSnapshot.child(str).child("email").getValue(String.class); //모든 이메일
-                    for (String item : selectedItems) {
-                        if (item.equals(str1)) {
-                            while (child3.hasNext()) {
+                if(flag!=1) {
+                    while (child1.hasNext()) {
 
-                                String str2 = child3.next().getKey();//모든 id
-                                String str3 = dataSnapshot.child(str2).child("email").getValue(String.class); //모든 이메일
-                                for (String item2 : selectedItems) {
-                                    if (!str.equals(str2) && item2.equals(str3)) {
-                                        mRef.child(str).child("Groups").child(group_name).child("member").child(str2).setValue(str3);
-                                        mRef.child(str).child("Groups").child(group_name).child("member").child(id).setValue(email);
-                                        mRef.child(str).child("Groups").child(group_name).child("made_by").setValue(id);
+                        String str = child1.next().getKey();//모든 id
+                        String str1 = dataSnapshot.child(str).child("email").getValue(String.class); //모든 이메일
+                        for (String item : selectedItems) {
+
+                            if (item.equals(str1)) {
+
+                                while (child3.hasNext()) {
+
+
+                                    String str2 = child3.next().getKey();//모든 id
+                                    String str3 = dataSnapshot.child(str2).child("email").getValue(String.class); //모든 이메일
+
+                                    for (String item2 : selectedItems) {
+
+                                        if (!str.equals(str2) && item2.equals(str3)) {
+
+                                            mRef.child(str).child("Groups").child(group_name).child("member").child(str2).setValue(str3);
+                                            mRef.child(str).child("Groups").child(group_name).child("member").child(id).setValue(email);
+                                            mRef.child(str).child("Groups").child(group_name).child("made_by").setValue(id);
+                                        }
                                     }
                                 }
+
+                                child3 = dataSnapshot.getChildren().iterator();
                             }
-                            child3 = dataSnapshot.getChildren().iterator();
-                        }
-                    }
-                }
+                        }//for
+                        flag=1;
+                    }//while
+                }//if
 
             } //onDataChange
 

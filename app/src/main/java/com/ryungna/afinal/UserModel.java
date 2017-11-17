@@ -14,9 +14,9 @@ public class UserModel {
 //    public static String choose_group;
     static FirebaseUser user = null;
 
-
     public static String userEmail; //userEmail에 email들어가있음
     public static String userUid; //userUid에 uid들어가있음
+    public static String choose_group;
 
 
 

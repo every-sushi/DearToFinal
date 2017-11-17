@@ -6,9 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ryungna.afinal.MainFrag">
+    tools:context="com.ryungna.afinal.MainFrag"
+    android:weightSum="1">
 
-    <FrameLayout
+    <!--<FrameLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -24,13 +25,22 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:text="@string/title_home" />
 
-    </FrameLayout>
+    </FrameLayout>-->
+
+    <fragment
+        android:name="com.ryungna.afinal.FragMe"
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="503dp"
+        tools:layout="@layout/fragment_frag_me"
+        android:layout_weight="1" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_weight="0"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation" />
 
