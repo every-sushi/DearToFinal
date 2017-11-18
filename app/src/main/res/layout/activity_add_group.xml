@@ -37,7 +37,7 @@
                 android:hint="그룹이름"
                 />
             <Button
-                android:id="@+id/bt"
+                android:id="@+id/select_member"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_weight="3"

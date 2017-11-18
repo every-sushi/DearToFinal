@@ -60,12 +60,12 @@ public class show_group_diary extends AppCompatActivity {
         write_group_diary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(myturn.equals(true)){
+                if(myturn.equals("true")){
                     Intent goToWrite = new Intent(show_group_diary.this,write_group_diary.class);
                     goToWrite.putExtra("group_name",UserModel.choose_group);
                     startActivity(goToWrite);
                }
-                else{ n--h0-j
+                else{
                     Toast.makeText(show_group_diary.this, "아직 차례가 되지 않았어요!!", Toast.LENGTH_SHORT).show();
                 }
 

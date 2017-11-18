@@ -33,6 +33,7 @@ public class write_group_diary extends AppCompatActivity {
     String turn="true";
     String id = UserModel.userUid;
     String madeby;
+    Button save_group_diary; Button cancel_group_diary;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,8 @@ public class write_group_diary extends AppCompatActivity {
         date=getTime();
         editText.setText(date);
 
-        final Button btn = (Button)findViewById(R.id.inputfirebasebt);//확인 버튼값 btn에 넣기
+        save_group_diary =  (Button)findViewById(R.id.save_group_diary);//확인 버튼값 btn에 넣기
+        cancel_group_diary = (Button)findViewById(R.id.cancel_group_diary);
         final EditText et1,et2,et3;
         et1 = (EditText)findViewById(R.id.titleText);//일기제목
         et2 = (EditText)findViewById(R.id.contentbox);//일기내용
@@ -69,9 +71,14 @@ public class write_group_diary extends AppCompatActivity {
 
             }
         });
+        cancel_group_diary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
 
         //확인 버튼 누르면 다음 화면으로 넘어감
-        btn.setOnClickListener(new View.OnClickListener(){
+        save_group_diary.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
 
                     Map<String, Object> map = new HashMap<String, Object>();

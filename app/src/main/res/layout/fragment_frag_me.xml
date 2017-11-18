@@ -15,13 +15,20 @@
             android:layout_height="45dp"
             android:orientation="horizontal"
             android:weightSum="1">
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:background="@drawable/button2"
+                android:layout_marginLeft="15dp"
+                android:paddingLeft="20dp"/>
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="326dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.85"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:paddingLeft="56dp"
                 android:text="내 일기장"
                 android:textColor="#ffffff"
                 android:textSize="25dp" />
@@ -31,6 +38,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
+
                 android:background="@drawable/button2"
                 android:layout_marginRight="15dp"/>
         </LinearLayout>

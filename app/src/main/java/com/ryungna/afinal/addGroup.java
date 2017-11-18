@@ -33,7 +33,6 @@ public class addGroup extends AppCompatActivity {
         chl.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         final String id=UserModel.userUid;
-        //final String id = "0yi2dUP9LwaZkYMViSNutSsKGxv2";
 
         FirebaseDatabase database2 = FirebaseDatabase.getInstance();
         final DatabaseReference databaseRef2 = database2.getReference("user");
@@ -106,7 +105,7 @@ public class addGroup extends AppCompatActivity {
                     while(child2.hasNext()){
                         String str2=child2.next().getKey();
                         if(str2.equals(group_name)){
-                            Toast.makeText(getApplicationContext(), "같은 이름의 일기가 존재합니다.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "그룹이 생성되었습니다.", Toast.LENGTH_LONG).show();
                             flag=1;
                         }
                         if(flag==1)break;
@@ -124,6 +123,7 @@ public class addGroup extends AppCompatActivity {
                         for(String item:selectedItems){//선택한 item
                             if(item.equals(str1)){ //item과 email이 같으면
                                 mRef.child(id).child("Groups").child(group_name).child("member").child(str).setValue(item); //내 아이디의 멤버에 아이디와 이메일 추가
+                                mRef.child(id).child("Groups").child(group_name).child("turn").setValue("true");
 
                             }
                         }
@@ -152,6 +152,7 @@ public class addGroup extends AppCompatActivity {
                                             mRef.child(str).child("Groups").child(group_name).child("member").child(str2).setValue(str3);
                                             mRef.child(str).child("Groups").child(group_name).child("member").child(id).setValue(email);
                                             mRef.child(str).child("Groups").child(group_name).child("made_by").setValue(id);
+                                            mRef.child(str).child("Groups").child(group_name).child("turn").setValue("true");
                                         }
                                     }
                                 }
@@ -168,8 +169,8 @@ public class addGroup extends AppCompatActivity {
             //            @Override
             public void onCancelled(DatabaseError databaseError) {   }
         });//mRef.addValueEventListener
+        finish();
 
-        //여기서 바로 그룹 목록으로 화면 전환되게 해야됨
     }//putItem
 
 } // end of main

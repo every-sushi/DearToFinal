@@ -46,7 +46,6 @@ public class Login extends AppCompatActivity {
         passwd = (EditText) findViewById(R.id.passwd);
         mAuth = FirebaseAuth.getInstance(); //firebaseAuh 개체의 공유 인스턴스 가져오기
 
-
         //로그인되어있는지 아닌지 확인하는거임
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -63,11 +62,11 @@ public class Login extends AppCompatActivity {
                     Intent intent = new Intent(Login.this, MainFrag.class);
                     finish(); //로그인이 되면 로그인액티비티가 사라지는거임
                     startActivity(intent);
-                    Toast.makeText(Login.this,"hello", Toast.LENGTH_SHORT);
+
 
                 } else {
                     // User is signed out
-                    Toast.makeText(Login.this,"failed login", Toast.LENGTH_SHORT);
+
 
                 }
                 // ...
@@ -128,6 +127,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         FirebaseDatabase.getInstance().getReference().child("user").child(userUid).child("email").setValue(userEmail);
+                        FirebaseDatabase.getInstance().getReference().child("user").child(userUid).child("MyDiary").child("count").setValue("0");
 
                         if (!task.isSuccessful()) {
                             Toast.makeText(Login.this, "회원가입 실패",
